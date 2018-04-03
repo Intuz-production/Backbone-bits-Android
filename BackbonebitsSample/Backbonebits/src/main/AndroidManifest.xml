@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.backbonebits">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.OBSERVE_GRANT_REVOKE_PERMISSIONS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:name="com.backbonebits.BackbonebitsUILApplication"
+        android:largeHeap="true"
+        android:vmSafeMode="true">
+
+        <activity
+            android:name="com.backbonebits.Backbonebits"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBScreenShotEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBNewRequestDialogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBImageHelperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBVideoHelperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBFaqHelperActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.backbonebits.service.BBChatHeadService"
+            android:enabled="true"
+            android:exported="false" />
+        <activity
+            android:name="com.backbonebits.permissionManagerViews.PermissionManagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent.BB" />
+        <activity
+            android:name="com.backbonebits.BBPastRequestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBPastRequestMessageDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.backbonebits.BBCustomGalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="BB.ACTION_PICK" />
+                <action android:name="BB.ACTION_MULTIPLE_PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <receiver
+            android:name=".Backbonebits$MyReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.backbonebits.action.stoprecording" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

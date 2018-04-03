@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bb_colorPrimary">#000000</color>
+    <color name="bb_colorPrimaryDark">#000000</color>
+    <color name="bb_colorAccent">#000000</color>
+    <color name="bb_blackcolor">#000000</color>
+    <color name="bb_lightblackcolor">#5C5C5C</color>
+    <color name="bb_lightbluecolor">#c8e3f9</color>
+    <color name="bb_greencolor">#97ba54</color>
+    <color name="bb_list_bg">#f7f7f7</color>
+    <color name="bb_dividercolor">#ececec</color>
+    <color name="bb_text_list_color">#707070</color>
+    <color name="bb_whitecolor">#FFFFFF</color>
+    <color name="bb_redcolor">#da7272</color>
+    <color name="bb_ab_color">#669900</color>
+    <color name="bb_brush_panel_bg">#66669900</color>
+    <color name="bb_loading_bg_transparent">#80000000</color>
+    <color name="bb_list_bg_faq">#E8E8E8</color>
+    <color name="bb_search_bg">#C9C9CE</color>
+    <color name="bb_notification_bg">#DA7272</color>
+    <color name="bb_notificationlight">#DEDEDE</color>
+    <color name="bb_lightbluetextclor">#00CCFF</color>
+    <color name="bb_mediumbluecolor">#00ACAC</color>
+    <color name="bb_transparentcolor">#00000000</color>
+    <color name="bb_lightwhitecolor">#F1F1F1</color>
+    <color name="bb_textcolordark">#B7B7B7</color>
+    <color name="bb_textcolorlight">#bababa</color>
+    <color name="bb_graydarkcolor">#1E1E1E</color>
+    <color name="bb_transparent_video">#895B5A55</color>
+    <color name="bb_defalut_brush_color">#E55023</color>
+
+</resources>

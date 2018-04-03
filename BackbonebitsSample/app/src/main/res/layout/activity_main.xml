@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_60sdp"
+    android:paddingLeft="@dimen/_60sdp"
+    android:paddingRight="@dimen/_60sdp"
+    android:paddingTop="@dimen/_60sdp"
+    tools:context="com.intuz.demo.MainActivity">
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="get help" />
+
+    <Button
+        android:id="@+id/brnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Next"
+        android:layout_below="@+id/button"/>
+</RelativeLayout>

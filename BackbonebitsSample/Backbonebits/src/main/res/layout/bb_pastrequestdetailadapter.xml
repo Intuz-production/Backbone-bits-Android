@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lnrMain"
+    android:background="@color/bb_whitecolor"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lnrFirst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/bb_search_bg" />
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtDate"
+                android:background="@drawable/bb_date_rounded_corner"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/_3sdp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb_blackcolor"
+                android:text="" />
+
+            <View
+                android:id="@+id/view4"
+
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@color/bb_search_bg" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtMessageHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+
+                android:text=" min \nago" />
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bb_textcolorlight"
+                android:text="00:00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/bb_search_bg" />
+
+            <ImageView
+                android:id="@+id/msgIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                 />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/bb_search_bg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textColor="@color/bb_textcolorlight"/>
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+
+                android:paddingLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_13ssp"
+
+                android:background="@drawable/chat_bar_bb"
+                android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnrBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/_49sdp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_43sdp"
+            android:gravity="center_horizontal"
+
+            android:orientation="horizontal">
+
+            <View
+
+                android:id="@+id/viewattchment"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@color/bb_search_bg" />
+
+            <View
+                android:layout_width="@dimen/_49sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/bb_search_bg" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/bb_whitecolor"
+                android:src="@drawable/bb_attach_icon_bb"
+               />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerImages"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

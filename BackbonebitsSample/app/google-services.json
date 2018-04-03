@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "222355214225",
+    "firebase_url": "https://BB.firebaseio.com",
+    "project_id": "BB",
+    "storage_bucket": "BB.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222355214225:android:d8819d6961fa46ab",
+        "android_client_info": {
+          "package_name": "com.intuz.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222355214225-fhi2cv0v2lk4bf13mthoi2fors65aj2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCce1iRb6QGTHbD2GqZNuIcgiyT0Uo0phc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

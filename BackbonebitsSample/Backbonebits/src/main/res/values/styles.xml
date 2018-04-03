@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BBAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bb_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/bb_colorPrimaryDark</item>
+        <item name="colorAccent">@color/bb_colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:editTextStyle">@style/BB.EditTextStyle</item>
+    </style>
+
+    <style name="BB.EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/bb_text_list_color</item>
+        <item name="colorControlActivated">@color/bb_text_list_color</item>
+        <item name="colorControlHighlight">@color/bb_text_list_color</item>
+    </style>
+
+    <style name="Theme.Transparent.BB" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

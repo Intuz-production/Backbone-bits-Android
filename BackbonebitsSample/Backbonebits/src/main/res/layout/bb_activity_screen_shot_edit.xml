@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+
+    android:layout_height="match_parent">
+
+
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <com.backbonebits.BBDrawingView
+            android:id="@+id/drawing_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/lnrTop"
+            android:keepScreenOn="true" />
+    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/lnrTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentTop="true"
+        android:background="@color/bb_blackcolor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.backbonebits.customviews.BBCustomBoldTextView
+            android:id="@+id/imgBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/imgCloseBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|center_vertical"
+            android:drawableLeft="@drawable/back_icon_bb"
+            android:gravity="center_vertical"
+            android:text="@string/back_button_string_bb"
+            android:textColor="@color/bb_whitecolor"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imgsendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/txtTitle"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:src="@drawable/send_btn_bb"
+            android:visibility="visible" />
+
+        <com.backbonebits.customviews.BBCustomBoldTextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/send_screenshot_string_bb"
+            android:textColor="@color/bb_whitecolor"
+            android:textSize="@dimen/_20ssp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_pallete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bb_graydarkcolor"
+        android:orientation="horizontal"
+        android:alpha="0.3"
+        android:padding="@dimen/_7sdp"
+        android:weightSum="3.0">
+
+        <LinearLayout
+            android:id="@+id/ll_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/colorpicker_icon_bb" />
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/color_string_bb"
+                android:textColor="@color/bb_whitecolor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/text_icon_bb" />
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_string_bb"
+                android:textColor="@color/bb_whitecolor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_undo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgUndo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/undo_icon_bb" />
+
+            <com.backbonebits.customviews.BBCustomTextView
+                android:id="@+id/txtUndo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/undo_string_bb"
+                android:textColor="@color/bb_whitecolor" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/brush_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_pallete"
+        android:background="@drawable/color_bar_bb"
+        android:baselineAligned="false"
+        android:layout_marginBottom="-11dp"
+        android:gravity="center_vertical"
+
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!--<SeekBar-->
+        <!--android:id="@+id/brush_stroke"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/brush_colors"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

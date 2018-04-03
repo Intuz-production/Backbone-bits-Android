@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/bb_whitecolor"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/lnrTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/bb_blackcolor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.backbonebits.customviews.BBCustomBoldTextView
+            android:id="@+id/imgBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/imgCloseBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|center_vertical"
+            android:drawableLeft="@drawable/back_icon_bb"
+            android:gravity="center_vertical"
+            android:text="@string/back_button_string_bb"
+            android:textColor="@color/bb_whitecolor"
+            android:textSize="@dimen/_18ssp"
+            android:visibility="visible" />
+
+        <com.backbonebits.customviews.BBCustomBoldTextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/txtpastrequestdetailString_bb"
+            android:textColor="@color/bb_whitecolor"
+            android:textSize="@dimen/_20ssp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnrTop"
+        android:orientation="horizontal"
+        android:padding="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgMessageType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_12sdp">
+
+            <com.backbonebits.customviews.BBCustomBoldTextView
+                android:id="@+id/txtRequestType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text=""
+                android:textColor="@color/bb_lightblackcolor"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.backbonebits.customviews.BBCustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/requeststring_bb"
+                    android:textColor="@color/bb_textcolorlight"
+                    android:textSize="@dimen/_17ssp"
+                    android:textStyle="bold" />
+
+                <com.backbonebits.customviews.BBCustomTextView
+                    android:id="@+id/txtId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text=""
+                    android:textColor="@color/bb_lightblackcolor"
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/detailMesageList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view"
+        android:layout_below="@+id/llheader"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:divider="@color/bb_dividercolor"
+        android:dividerHeight="0dp"
+        android:scrollbars="none"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/llBottom"
+        android:background="@color/bb_dividercolor" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerAttachImages"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_above="@+id/view"
+        android:layout_marginBottom="-10dp"
+        android:background="@drawable/bb_attachment_bar_bb"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_3sdp"
+        android:visibility="gone">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <com.backbonebits.customviews.BBCustomTextView
+        android:id="@+id/txtNoDataJobList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/str_no_data_my_listing_bb"
+        android:textColor="@color/bb_dividercolor"
+        android:textSize="@dimen/_14ssp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/imgAttchment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/_16sdp"
+            android:src="@drawable/bb_attachment_icon_bb" />
+
+        <com.backbonebits.customviews.BBCustomEdiText
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:hint="@string/type_message_string_bb"
+            android:singleLine="true"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.backbonebits.customviews.BBCustomTextView
+            android:id="@+id/txtSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16sdp"
+            android:text="@string/sendbuttonstring_bb"
+            android:textColor="@color/bb_lightbluetextclor"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>
