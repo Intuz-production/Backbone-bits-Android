@@ -138,6 +138,6 @@ For bugs, questions and discussions please use the Github Issues.
 <br/>
 <a href="https://github.com/Intuz-production/Backbone-bits-PHP" target="_blank">Backbone bits PHP SDK</a>
  
- <br/>
+ <br/> <br/>
 
 <a href="https://www.intuz.com/" target="_blank"><img src="Screenshots/logo.jpg"></a>
