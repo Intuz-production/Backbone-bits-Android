@@ -1,7 +1,8 @@
 <h1>Introduction</h1>
 
-Backbonebits  is an amazing tool to pitch your app to the major mobile platforms that are effective for both new and existing apps. Slice and dice your audience from our dashboard analytics with live metrics.
-This documentation will help you to add and configure your apps with Backbonebits tool. You can gain deep insight and easily respond all of your apps very quickly and with little effort using Backbonebits's iOS and Android SDK. Moreover, you can add FAQ, Videos, Images for the guidance of the app using help module. The SDK integration process is designed to be as easy as possible with a basic setup complete in under 5 minutes.
+Backbone Bits is an amazing tool to pitch your app to the major mobile platforms that are effective for both new and existing apps.
+This documentation will help you to add and configure your apps with Backbone Bits tool. You can gain deep insight and easily respond all of your apps very quickly and with little effort using Backbone Bits's Android SDK. The SDK integration process is designed to be as easy as possible with a basic setup complete in under 5 minutes.
+
 
 
 <h1>Screenshots</h1>
@@ -138,6 +139,6 @@ For bugs, questions and discussions please use the Github Issues.
 <br/>
 <a href="https://github.com/Intuz-production/Backbone-bits-PHP" target="_blank">Backbone bits PHP SDK</a>
  
- <br/>
+ <br/> <br/>
 
 <a href="https://www.intuz.com/" target="_blank"><img src="Screenshots/logo.jpg"></a>
