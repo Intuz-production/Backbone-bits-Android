@@ -39,7 +39,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
-;
+
 
 public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictureRequestAdapter.ViewHolder> {
 
@@ -131,28 +131,26 @@ public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictur
     }
 
     public void openVideoDialog(String url) {
+        final Dialog videodialog = new Dialog(context, R.style.BBAppTheme);
+        videodialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        videodialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
+        videodialog.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        videodialog.setCancelable(false);
+        videodialog.setContentView(R.layout.bb_videodialog);
+        ImageView close_btn = videodialog.findViewById(R.id.close_btn_video);
+        final ProgressBar progressbar = videodialog.findViewById(R.id.progressbar);
+        close_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                videodialog.dismiss();
+            }
+        });
+
+        final VideoView videoview = videodialog.findViewById(R.id.videoView);
+        // Execute StreamVideo AsyncTask
         try {
-
-            final Dialog videodialog = new Dialog(context, R.style.BBAppTheme);
-            videodialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            videodialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT);
-            videodialog.getWindow().setSoftInputMode(
-                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-            videodialog.setCancelable(false);
-            videodialog.setContentView(R.layout.bb_videodialog);
-            ImageView close_btn = videodialog.findViewById(R.id.close_btn_video);
-            final ProgressBar progressbar = videodialog.findViewById(R.id.progressbar);
-            close_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    videodialog.dismiss();
-                }
-            });
-
-            final VideoView videoview = videodialog.findViewById(R.id.videoView);
-            // Execute StreamVideo AsyncTask
-
             // Create a progressbar
             BBUtils.showProgress(context);
 
@@ -180,8 +178,7 @@ public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictur
                     BBUtils.hideProgress();
                     videoview.start();
                     String manufacturer = android.os.Build.MANUFACTURER;
-                    if(manufacturer.equalsIgnoreCase("samsung"))
-                    {
+                    if (manufacturer.equalsIgnoreCase("samsung")) {
                         progressbar.setVisibility(View.GONE);
 
                     }
@@ -189,7 +186,6 @@ public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictur
 
                         @Override
                         public void onVideoSizeChanged(MediaPlayer mp, int arg1, int arg2) {
-
                             progressbar.setVisibility(View.GONE);
                             videoview.start();
                         }
@@ -203,10 +199,20 @@ public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictur
                     videodialog.dismiss();
                 }
             });
-            if(videodialog!=null && !videodialog.isShowing())
-            videodialog.show();
+            videoview.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                    BBUtils.hideProgress();
+                    progressbar.setVisibility(View.GONE);
+                    return false;
+                }
+            });
+            if (videodialog != null && !videodialog.isShowing())
+                videodialog.show();
         } catch (Exception ex) {
             ex.printStackTrace();
+            BBUtils.hideProgress();
+            progressbar.setVisibility(View.GONE);
         }
     }
 
@@ -238,8 +244,8 @@ public class BBAddPictureRequestAdapter extends RecyclerView.Adapter<BBAddPictur
                 e.printStackTrace();
             }
 
-            if(videodialog!=null && !videodialog.isShowing())
-            videodialog.show();
+            if (videodialog != null && !videodialog.isShowing())
+                videodialog.show();
 
         } catch (Exception ex) {
             ex.printStackTrace();

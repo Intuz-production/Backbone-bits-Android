@@ -199,9 +199,10 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         try {
             BBUtils.androidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             BBUtils.setSharedPreString(context1, BBUtils.ANDROID_ID, BBUtils.androidID);
+
             BBForeground.get(context1.getApplicationContext()).addListener(myListener);
 
-
+//            BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
             ApplicationInfo ai = Backbonebits.context.getPackageManager().getApplicationInfo(context1.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
             String myAPIKey = bundle.getString(context.getResources().getString(R.string.api_key_bb));
@@ -314,6 +315,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
     protected void onStop() {
         Log.e("onStop", "onStop");
         super.onStop();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -350,6 +352,8 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        setFlagforDialog(false);
+
     }
 
     public void openHelpDialog(int isVideo, int isImage, int isFaq) {
@@ -379,8 +383,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
             imgCloseBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
-
+                    setFlagforDialog(false);
                     if (helpdialog != null && helpdialog.isShowing()) {
                         helpdialog.dismiss();
                     }
@@ -460,12 +463,12 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
                     if (helpdialog != null && helpdialog.isShowing()) {
                         helpdialog.dismiss();
-                        BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
+                        setFlagforDialog(false);
 
                     }
 
                     BBCommon.requestFrom = 0;
-                    BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
+                    setFlagforDialog(false);
 
 
                 }
@@ -622,7 +625,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                         from = "video";
                         if (helpdialog != null) {
                             helpdialog.dismiss();
-                            BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
+                            setFlagforDialog(false);
 
                         }
 
@@ -666,7 +669,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
                         if (helpdialog != null) {
                             helpdialog.dismiss();
-                            BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
+                            setFlagforDialog(false);
 
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -809,23 +812,20 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
                             BBStatusMenuRequestResponse result = response.body();
                             if (result.getStatus() == 2) {
-
                                 Toast.makeText(Backbonebits.this, result.getMsg(), Toast.LENGTH_SHORT).show();
+                                setFlagforDialog(false);
                                 Backbonebits.this.finish();
-
                             } else if (result.getStatus() == 0 && result.getMsg() != null && !result.getMsg().equalsIgnoreCase("")) {
                                 Toast.makeText(Backbonebits.this, result.getMsg(), Toast.LENGTH_SHORT).show();
                                 Backbonebits.this.finish();
-
+                                setFlagforDialog(false);
                             } else {
                                 BBUtils.notificationCount = result.getMessageCount();
                                 openHelpDialog(result.getVideo().getStatus(), result.getImage().getStatus(), result.getFaq().getStatus());
                             }
-
-
                         } else {
                             BBUtils.hideProgress();
-
+                            setFlagforDialog(false);
                         }
                     }
 
@@ -836,6 +836,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                         Backbonebits.this.finish();
                         BBUtils.showToast(Backbonebits.this, context.getResources().getString(R.string.server_error_bb));
                         BBUtils.hideProgress();
+                        setFlagforDialog(false);
                     }
                 });
             }
@@ -843,6 +844,10 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setFlagforDialog(boolean isShow) {
+        BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, isShow);
     }
 
     @Override
@@ -950,15 +955,11 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
     @Override
     public void hearShake() {
-
-
         if (isShake) {
-
             try {
-
                 Log.i(TAG, "handle shake");
-                if (BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN) == false) {
-                    BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, true);
+                if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN)) {
+                    setFlagforDialog(true);
                     SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
                     ShakeDetector sd = new ShakeDetector(this);
                     sd.start(sensorManager);
@@ -970,7 +971,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                     overridePendingTransition(0, 0);
                 }
             } catch (Exception ex) {
-
+                setFlagforDialog(false);
             }
         }
     }
@@ -991,17 +992,20 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         Log.e("onBackPressed", "onBackPressed");
         if (helpdialog != null && helpdialog.isShowing()) {
             helpdialog.dismiss();
-            BBUtils.setBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN, false);
-
-
+            setFlagforDialog(false);
         }
-
     }
+
+    ShakeDetector sd = null;
 
     public void initializeBBSDK(final Context context) {
         SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
-        ShakeDetector sd = new ShakeDetector(this);
-        sd.start(sensorManager);
+        if (sd == null) {
+            sd = new ShakeDetector(this);
+            sd.stop();
+            sd.start(sensorManager);
+        }
+
         Backbonebits.context = context;
         init(context);
 
@@ -1010,6 +1014,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
     public void openBBHelper() {
         SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
+
         sd.start(sensorManager);
         Backbonebits.context = context;
         init(context);

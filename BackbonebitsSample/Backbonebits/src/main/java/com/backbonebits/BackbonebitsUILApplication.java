@@ -16,23 +16,21 @@ package com.backbonebits;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
-public class BackbonebitsUILApplication extends Application {
+public class BackbonebitsUILApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
-
         super.onCreate();
         BBForeground.init(this);
         initImageLoader(getApplicationContext());
-
     }
-
 
     public static ImageLoader initImageLoader(Context context) {
         // This configuration tuning is custom. You can tune every option, you may tune some of them,

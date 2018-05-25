@@ -16,6 +16,7 @@ package com.backbonebits.fcm;
 
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -63,7 +64,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(String message) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        String CHANNEL_ID = "Backbonebit";
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID);
         Intent intent = new Intent(this, BBPastRequestActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(this, (int) (Math.random() * 100), intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -73,16 +75,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         mBuilder.setContentTitle(getString(R.string.app_name));
         mBuilder.setDefaults(Notification.DEFAULT_SOUND);
         mBuilder.setContentText(message);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mBuilder.setColor(getResources().getColor(R.color.bb_lightbluetextclor));
-                mBuilder.setSmallIcon(R.drawable.logo_bb);
-            } else {
-                mBuilder.setSmallIcon(R.drawable.logo_bb);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mBuilder.setColor(getResources().getColor(R.color.bb_lightbluetextclor));
+            mBuilder.setSmallIcon(R.drawable.logo_bb);
+        } else {
+            mBuilder.setSmallIcon(R.drawable.logo_bb);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = mNotificationManager != null ? mNotificationManager.getNotificationChannel(String.valueOf(CHANNEL_ID)) : null;
+            if (mChannel == null) {
+                mChannel = new NotificationChannel(String.valueOf(CHANNEL_ID), "Backbone", NotificationManager.IMPORTANCE_HIGH);
+                mNotificationManager.createNotificationChannel(mChannel);
             }
+        }
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
         NOTIFICATION_ID++;
-
-
     }
 
 }
