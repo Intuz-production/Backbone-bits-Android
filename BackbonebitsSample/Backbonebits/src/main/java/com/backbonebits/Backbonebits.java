@@ -126,6 +126,8 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
     private PermissionManagerInstance mPermissionManagerInstance;
     private String[] permissionArray = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.RECORD_AUDIO};
     private String[] permissionArray1 = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private ShakeDetector shakeDetector = null;
+
 
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -152,7 +154,6 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
     BBForeground.Listener myListener = new BBForeground.Listener() {
         public void onBecameForeground() {
             Log.i("inForeground", "inForeground");
-
         }
 
         public void onBecameBackground() {
@@ -171,7 +172,6 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                 }
                 mBBChatHeadService.stopSelf();
             }
-
 
             if (!mIsBound) {
                 context.bindService(new Intent(context, BBChatHeadService.class), this, Context.BIND_AUTO_CREATE);
@@ -208,12 +208,9 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
             String myAPIKey = bundle.getString(context.getResources().getString(R.string.api_key_bb));
             BBUtils.IS_LIVE = bundle.getBoolean("BB_Test_Mode");
 
-
             PackageManager manager = Backbonebits.context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context1.getPackageName(), 0);
-
             BBUtils.version = info.versionName;
-
             test_mode = bundle.getBoolean(context.getResources().getString(R.string.test_mode_bb));
             if (test_mode) {
             } else {
@@ -223,12 +220,9 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                 BBUtils.packageName = context1.getPackageName();
                 BBUtils.Key = myAPIKey;
                 mPermissionManagerInstance = new PermissionManagerInstance(context1);
-
             } else {
                 Log.e("Backbonebits", "No BBAPIKey found in AndroidManifest.xml.Please re-check it again.");
             }
-
-
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
@@ -626,23 +620,17 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                         if (helpdialog != null) {
                             helpdialog.dismiss();
                             setFlagforDialog(false);
-
                         }
-
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             mMediaRecorder = new MediaRecorder();
-
-                            mProjectionManager = (MediaProjectionManager) getSystemService
-                                    (Context.MEDIA_PROJECTION_SERVICE);
+                            mProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
                             if (!Settings.canDrawOverlays(context)) {
                                 isPermission = true;
                                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
                                 startActivityForResult(intent, CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE);
-
                             } else {
                                 if (mPermissionManagerInstance == null) {
                                     mPermissionManagerInstance = new PermissionManagerInstance(context);
-
                                 }
                                 mPermissionManagerInstance.setShowMessageOnRationale(true);
                                 mPermissionManagerInstance.setMessage("Required");
@@ -652,11 +640,8 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                                         if (allGranted) {
                                             onToggleScreenShare();
                                         }
-
-
                                     }
                                 });
-
                             }
 
                         } else {
@@ -721,7 +706,6 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                         startActivity(i);
                         finish();
                         overridePendingTransition(0, 0);
-
                     }
 
                 }
@@ -959,16 +943,21 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
             try {
                 Log.i(TAG, "handle shake");
                 if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN)) {
+                    Backbonebits.context = context;
                     setFlagforDialog(true);
                     SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
-                    ShakeDetector sd = new ShakeDetector(this);
-                    sd.start(sensorManager);
-                    Backbonebits.context = context;
+                    if (shakeDetector == null) {
+                        shakeDetector = new ShakeDetector(this);
+                        shakeDetector.stop();
+                        shakeDetector.start(sensorManager);
+                    }
                     init(context);
                     Intent i = new Intent(context, Backbonebits.class);
                     context.startActivity(i);
                     finish();
                     overridePendingTransition(0, 0);
+                } else {
+                    setFlagforDialog(false);
                 }
             } catch (Exception ex) {
                 setFlagforDialog(false);
@@ -994,16 +983,16 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
             helpdialog.dismiss();
             setFlagforDialog(false);
         }
+        super.onBackPressed();
     }
 
-    ShakeDetector sd = null;
 
     public void initializeBBSDK(final Context context) {
         SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
-        if (sd == null) {
-            sd = new ShakeDetector(this);
-            sd.stop();
-            sd.start(sensorManager);
+        if (shakeDetector == null) {
+            shakeDetector = new ShakeDetector(this);
+            shakeDetector.stop();
+            shakeDetector.start(sensorManager);
         }
 
         Backbonebits.context = context;
@@ -1013,17 +1002,18 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
     public void openBBHelper() {
         SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
-        ShakeDetector sd = new ShakeDetector(this);
-
-        sd.start(sensorManager);
+        if (shakeDetector == null) {
+            shakeDetector = new ShakeDetector(this);
+            shakeDetector.stop();
+            shakeDetector.start(sensorManager);
+        }
         Backbonebits.context = context;
         init(context);
+
         Intent i = new Intent(context, Backbonebits.class);
         context.startActivity(i);
         finish();
         ((Activity) context).overridePendingTransition(0, 0);
-
-
     }
 
     private boolean checkAndRequestPermissions() {
@@ -1327,10 +1317,12 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
             int width = metrics.widthPixels;
             int height = metrics.heightPixels;
 
+
             mMediaRecorder.setVideoSize(width, height);
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mMediaRecorder.setVideoEncodingBitRate(512 * 1000);
+//            mMediaRecorder.setVideoEncodingBitRate(512 * 10000);//For video quality
+            mMediaRecorder.setVideoEncodingBitRate(2500000);//For video quality
             mMediaRecorder.setVideoFrameRate(30);
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             int orientation = ORIENTATIONS.get(rotation + 90);
