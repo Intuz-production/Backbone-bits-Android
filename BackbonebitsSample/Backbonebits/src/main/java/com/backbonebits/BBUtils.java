@@ -49,7 +49,9 @@ import okhttp3.RequestBody;
 
 
 public class BBUtils {
-    public static final String BASE_URL = "Your_Server_Url"; // Please put your server url here.
+    //public static final String BASE_URL = "Your_Server_Url"; // Please put your server url here.
+    public static final String BASE_URL = "http://clientveb.net/inhouse/backbone/backbonebits_web/services/";
+
     public static String Key;
     public static String packageName;
     public static String version;

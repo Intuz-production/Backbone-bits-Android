@@ -70,7 +70,7 @@ public class BBForeground implements Application.ActivityLifecycleCallbacks {
 
     }
 
-    private static BBForeground instance;
+    public static BBForeground instance;
 
     private boolean foreground = false, paused = true;
     private Handler handler = new Handler();

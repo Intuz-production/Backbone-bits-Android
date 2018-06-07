@@ -31,9 +31,9 @@ android {
     lintOptions { abortOnError false }
 }
 repositories {
-    maven {
+    /*maven {
         url "https://jitpack.io"
-    }
+    }*/
     jcenter()
     mavenCentral()
     maven {
@@ -44,22 +44,22 @@ repositories {
 dependencies {
     def seismicVersion = '1.0.2'
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support:design:27.1.1'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.google.android.gms:play-services-location:15.0.1'
-    compile 'com.android.support:recyclerview-v7:27.1.1'
-    compile "com.squareup:seismic:${seismicVersion}"
-    compile 'com.google.firebase:firebase-messaging:15.0.2'
-    compile 'com.google.firebase:firebase-core:15.0.2'
-    implementation 'com.android.support:multidex:1.0.3'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    testApi 'junit:junit:4.12'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    api 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api 'com.android.support:multidex:1.0.3'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.squareup:seismic:1.0.2'
+    api 'com.google.android.gms:play-services-location:15.0.1'
+    api 'com.google.firebase:firebase-messaging:17.0.0'
+    api 'com.google.firebase:firebase-core:16.0.0'
+    api 'com.google.code.gson:gson:2.8.1'
 
 }
 

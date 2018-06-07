@@ -2,11 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter()  // helps me to resolve this issue
+        jcenter()
+        mavenCentral()// helps me to resolve this issue
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'com.google.gms:google-services:3.1.0'
     }
 }

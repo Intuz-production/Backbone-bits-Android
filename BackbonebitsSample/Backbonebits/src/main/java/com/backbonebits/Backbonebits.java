@@ -149,19 +149,19 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
 
     public Backbonebits() {
 
-    }
 
+
+    }
     BBForeground.Listener myListener = new BBForeground.Listener() {
         public void onBecameForeground() {
             Log.i("inForeground", "inForeground");
         }
 
         public void onBecameBackground() {
-
+            Log.i("inBackground", "inBackground");
         }
 
     };
-
     private void ClearChatHead() {
         try {
             Log.e("isPermission>>", "isPermission>>" + isPermission);
@@ -711,7 +711,14 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
                 }
             });
 
-            AlertDialog alertDialog = alertDialogBuilder.create();
+            final AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.bb_blackcolor));
+                    alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.bb_blackcolor));
+                }
+            });
             if (alertDialog != null && !alertDialog.isShowing())
                 alertDialog.show();
         } catch (Exception ex) {
@@ -942,7 +949,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         if (isShake) {
             try {
                 Log.i(TAG, "handle shake");
-                if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN)) {
+                if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN) &&BBForeground.instance.isForeground()) {
                     Backbonebits.context = context;
                     setFlagforDialog(true);
                     SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
