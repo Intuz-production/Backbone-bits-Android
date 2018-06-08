@@ -92,8 +92,8 @@ class BBFullscreenObserverView extends View implements ViewTreeObserver.OnGlobal
     public void onGlobalLayout() {
         try{
         if (mBBScreenChangedListener != null) {
-            getWindowVisibleDisplayFrame(mWindowRect);
-            mBBScreenChangedListener.onScreenChanged(mLastUiVisibility != View.SYSTEM_UI_FLAG_VISIBLE || mWindowRect.top == 0);
+            //getWindowVisibleDisplayFrame(mWindowRect);
+            //mBBScreenChangedListener.onScreenChanged(mLastUiVisibility != View.SYSTEM_UI_FLAG_VISIBLE || mWindowRect.top == 0);
         }
         }catch(Exception ex)
         {
