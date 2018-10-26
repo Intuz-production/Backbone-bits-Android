@@ -150,8 +150,8 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
     public Backbonebits() {
 
 
-
     }
+
     BBForeground.Listener myListener = new BBForeground.Listener() {
         public void onBecameForeground() {
             Log.i("inForeground", "inForeground");
@@ -162,6 +162,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         }
 
     };
+
     private void ClearChatHead() {
         try {
             Log.e("isPermission>>", "isPermission>>" + isPermission);
@@ -595,8 +596,12 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         mMediaProjection = mProjectionManager.getMediaProjection(resultCode, data);
         mMediaProjection.registerCallback(mMediaProjectionCallback, null);
         mVirtualDisplay = createVirtualDisplay();
-        mMediaRecorder.start();
 
+        try {
+            mMediaRecorder.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void alertDialog(final View view, String msg, final String type, final Activity ctx) {
@@ -949,7 +954,7 @@ public class Backbonebits extends Activity implements ShakeDetector.Listener, Se
         if (isShake) {
             try {
                 Log.i(TAG, "handle shake");
-                if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN) &&BBForeground.instance.isForeground()) {
+                if (!BBUtils.getBoolean(Backbonebits.context, BBUtils.IS_DIALOG_SHOWN) && BBForeground.instance.isForeground()) {
                     Backbonebits.context = context;
                     setFlagforDialog(true);
                     SensorManager sensorManager = (SensorManager) Backbonebits.context.getSystemService(SENSOR_SERVICE);
